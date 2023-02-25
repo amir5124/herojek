@@ -6,13 +6,16 @@ import HomeScreen from './screens/HomeScreen/HomeScreen';
 import SearchResults from './screens/SearchResults';
 import Geolocation from '@react-native-community/geolocation';
 import Router from './navigation/Root'
+import {withAuthenticator} from 'aws-amplify-react-native';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
+import { Amplify } from 'aws-amplify';
+import awsconfig from './src/aws-exports';
+
+Amplify.configure(awsconfig);
+
 const App = () => {
-
-  
-
   return (
     <>
        <StatusBar barStyle="dark-content" />
@@ -26,4 +29,4 @@ const App = () => {
 };
 
 
-export default App;
+export default withAuthenticator(App);

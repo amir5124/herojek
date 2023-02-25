@@ -1,0 +1,27 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-perawatqu-dev-110310-authRole",
+      "UnauthRoleArn": "arn:aws:iam::839136773532:role/amplify-perawatqu-dev-110310-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::839136773532:role/amplify-perawatqu-dev-110310-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-perawatqu-dev-110310-deployment",
+      "UnauthRoleName": "amplify-perawatqu-dev-110310-unauthRole",
+      "StackName": "amplify-perawatqu-dev-110310",
+      "StackId": "arn:aws:cloudformation:us-west-1:839136773532:stack/amplify-perawatqu-dev-110310/5782ef80-b4c1-11ed-a465-06ef0b997e87",
+      "AmplifyAppId": "d24cxcjvh9u9zu",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-perawatqu-dev-110310-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "perawatquf70578d9f70578d9": {}
+      },
+      "function": {
+        "perawatquf70578d9f70578d9PostConfirmation": {
+          "deploymentBucketName": "amplify-perawatqu-dev-110310-deployment",
+          "s3Key": "amplify-builds/perawatquf70578d9f70578d9PostConfirmation-66384e49515633784f69-build.zip"
+        }
+      }
+    }
+  }
+}
