@@ -16,13 +16,11 @@ const HomeSearch = () => {
            {/* input box */}
            <Pressable onPress={goToSearch} style={styles.inputBox}>
                <Text style={styles.inputText}>
-                   Mau kemana?
+                 Cari perawat atau caregiver...
                </Text>
 
                <View style={styles.timeContainer}>
-               <MaterialIcons name={'schedule'} size={25} color={'#535353'} />
-                   <Text>Now</Text>
-                   <MaterialIcons name={'keyboard-arrow-down'} size={16} />
+               <MaterialIcons name={'add-circle-outline'} size={30} color={'#fff'} />
                </View>
            </Pressable>
 
@@ -39,11 +37,11 @@ const HomeSearch = () => {
 
            {/* home destination */}
               <View style={styles.row}>
-                  <View style={[styles.iconContainer, {backgroundColor: '#2b88ff',}]}>
+                  <View style={[styles.iconContainer, {backgroundColor: '#FBC531',}]}>
                   <MaterialIcons name={'location-on'} size={25} color={'#fff'}/>
                   </View>
                   <Text style={styles.destination}>
-                      Spin Nightclub
+                      Rumah
                   </Text>
               </View>
 
@@ -75,9 +73,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: 100,
+        justifyContent: 'center',
+        width: 50,
         padding: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#21cbc0',
         borderRadius: 50,
     },
     row: {

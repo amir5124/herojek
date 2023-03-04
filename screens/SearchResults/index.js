@@ -1,18 +1,64 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Alert, Dimensions, StyleSheet, Text, View,  } from 'react-native'
+import React, { useState,useEffect } from 'react'
 import UberTypes from '../../components/UberTypes';
 import RouteMap from '../../components/RouteMap';
-
-import {useRoute} from '@react-navigation/native'
-
+import { API, graphqlOperation, Auth } from 'aws-amplify'
+import {useRoute, useNavigation} from '@react-navigation/native'
+import {createOrder} from '../../src/graphql/mutations'
+// import {sendPushNotification} from '../../screens/OrderScreen'
 
 const SearchResults = () => {
 
+  const typeState = useState(null);
   const route = useRoute();
+  const navigation = useNavigation();
 
-  console.log(route.params);
-  const {originPlace, destinationPlace} = route.params
+  const {originPlace, destinationPlace, } = route.params  
+  global.calculatedOrigin = originPlace
+    global.calculatedDestination= destinationPlace
   
+  const onSubmit = async () => {
+    
+    const [type] = typeState;
+    if (!type) {
+      return;
+    }
+    
+
+    try {
+      const userInfo = await Auth.currentAuthenticatedUser();
+
+      const date = new Date();
+      const input = {
+        createdAt: date.toISOString(),
+        type,
+        originLatitude: originPlace.details.geometry.location.lat,
+        oreiginLongitude: originPlace.details.geometry.location.lng,
+
+        destLatitude: destinationPlace.details.geometry.location.lat,
+        destLongitude: destinationPlace.details.geometry.location.lng,
+
+        userId: userInfo.attributes.sub,
+        carId: "1",
+        status: "NEW",
+      }
+
+      const response = await API.graphql(
+        graphqlOperation(
+          createOrder, {
+            input: input
+          },
+        )
+      )
+    
+      console.log(response);
+       navigation.navigate('OrderPage', {id: response.data.createOrder.id})
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+
     return (
       <View style={{display: 'flex', justifyContent: 'space-between',}}>
 
@@ -21,7 +67,7 @@ const SearchResults = () => {
       </View>
 
       <View style={{height: 400,}}>
-      <UberTypes />
+      <UberTypes typeState={typeState} onSubmit={onSubmit} />
       </View>
 
     </View>

@@ -20,7 +20,6 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "api": {
         "perawatqu": {
-            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }

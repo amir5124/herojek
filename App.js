@@ -12,13 +12,14 @@ navigator.geolocation = require('@react-native-community/geolocation');
 
 import { Amplify } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
+Amplify.configure({Analytics: {disabled: true}});
 
 Amplify.configure(awsconfig);
 
 const App = () => {
   return (
     <>
-       <StatusBar barStyle="dark-content" />
+       <StatusBar barStyle="light-content" backgroundColor={'#21cbc0'} />
        {/* <HomeScreen /> */}
        {/* <DestinationSearch /> */}
        {/* <SearchResults /> */}
