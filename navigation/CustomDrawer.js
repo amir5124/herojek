@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import {DrawerContentScrollView, DrawerItemList} from '@react-navigation/drawer';
-// import { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 const CustomDrawer = (props) => {
   return (

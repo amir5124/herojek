@@ -5,10 +5,10 @@ const CovidMessages = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
-                Traver only if neccessary
+                Perawatku
             </Text>
             <Text style={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ipsum non temporibus exercitationem fugiat neque inventore facilis voluptatem labore rerum!
+                Kami siap membantu Anda
             </Text>
         </View>
     )

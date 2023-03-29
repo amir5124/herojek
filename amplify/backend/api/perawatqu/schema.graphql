@@ -2,6 +2,7 @@ type User @model {
   id: ID!
   username: String!
   email: String!
+  phoneNumber: String
 
   orders: [Order] @connection(keyName: "byUser", fields: ["id"])
   car: Car @connection(fields: ["id"])
@@ -27,6 +28,7 @@ type Order @model
 @key(name: "byCar", fields: ["carId", "createdAt"]) {
   id: ID!
   createdAt: String!
+  phoneNumber: String,
 
   type: String!
   status: String,

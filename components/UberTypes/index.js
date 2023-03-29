@@ -1,45 +1,55 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import UberTypeRow from '../UberTypeRow';
 import typesData from '../../assets/data/types';
 import CovidMessages from '../CovidMessages/CovidMessages';
+import FIREBASE from '../../config/FIREBASE';
 
 const UberTypes = ({typeState, onSubmit}) => {
   const [selectedType, setSelectedType] = typeState;
+  const [token, setToken] = useState();
 
-  var myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append(
-    'Authorization',
-    'key=AAAAG0qCOb0:APA91bEYLn604KFSZ9r4NyBIxqvGIE8diD17Mlape8cYoOQDGcioNp8aaBbvGkqhyX3VEyAhnitkdeoznHwZWVZz-VDG6Bu_equhZ2yabEcsPAo4V3hOsaQReqzjiL4210jiGDwW34FA',
-  );
+  async function sendPushNotification(title, message) {
+    const FIREBASE_API_KEY =
+      'AAAADkcvkN0:APA91bEHNRZwVtqInZ6cAZ60ACb2MKwOv3XNHMztKtWIUDErteabFvwlVoOSZOcaO0o0NKAOZf6hV84wI8YZgCaa400TM_YJny58QHLHVTc9dB905W1J5afdfoBIS6V2i9iIE5V-rNvR';
+    // const token = await messaging().getToken();
+    const messageBody = {
+      to: token,
+      notification: {
+        title: selectedType,
+        body: 'Ada Orderan Masuk',
+        priority: 'high',
+        sound: 'default',
+        show_in_foreground: true,
+      },
+    };
 
-  var raw = JSON.stringify({
-    to: 'cm4f6uXRT_GQ5UmIS1kA6m:APA91bH4fjeE3tVxeO50AsyjBWf2cnNLn-y9anAWDNEqrORFQyP43HXx-aPiZzqOVHObtNiCMdYMr0BVyB4wFt-r625L6DqLDuw5pSNAiF5zB6oQeQEzRHsbwv2eIyC9SiUZq9prHBOj',
-    notification: {
-      title: 'Pesanan membutuhkan driver',
-      key: '{type.type === selectedType}',
-      mutable_content: true,
-      sound: 'default',
-    },
-    data: {
-      key: '{type.type === selectedType}',
-      dl: '<deeplink action on tap of notification>',
-    },
+    fetch('https://fcm.googleapis.com/fcm/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'key=' + FIREBASE_API_KEY,
+      },
+      body: JSON.stringify(messageBody),
+    })
+      .then(response => {
+        console.log('Push notification response: ', response);
+      })
+      .catch(error => {
+        console.log('Error sending push notification: ', error);
+      });
+  }
+
+  // Mendapatkan referensi database Firebase
+  const database = FIREBASE.database();
+
+  // Mendapatkan token FCM dari database Firebase
+  const fcmTokenRef = database.ref('tokens');
+  fcmTokenRef.once('value', snapshot => {
+    const fcmToken = snapshot.val();
+    setToken(fcmToken);
+    // Gunakan token FCM untuk mengirim notifikasi
   });
-
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow',
-  };
-
-  const onNotif = () => {
-    fetch('https://fcm.googleapis.com/fcm/send', requestOptions).then(result =>
-      console.log(JSON.stringify(result)),
-    );
-  };
 
   return (
     <View style={{backgroundColor: '#fff'}}>
@@ -58,6 +68,7 @@ const UberTypes = ({typeState, onSubmit}) => {
       <Pressable
         onPress={() => {
           onSubmit();
+          sendPushNotification();
         }}
         style={{
           backgroundColor: '#21cbc0',

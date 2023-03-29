@@ -7,6 +7,7 @@ export const getUser = /* GraphQL */ `
       id
       username
       email
+      phoneNumber
       orders {
         items {
           id
@@ -38,6 +39,7 @@ export const getUser = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -60,6 +62,7 @@ export const listUsers = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -111,6 +114,7 @@ export const getCar = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -155,6 +159,7 @@ export const listCars = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -181,6 +186,7 @@ export const getOrder = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -214,6 +220,7 @@ export const getOrder = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -245,6 +252,7 @@ export const listOrders = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }

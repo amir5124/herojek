@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { responsiveWidth } from '../../constants/utils';
+import { numberWithCommas } from '../../constants/utils';
 
 const UberTypeRow = (props) => {
   const {type, onPress, isSelected} = props;
@@ -20,7 +21,7 @@ const UberTypeRow = (props) => {
       onPress={onPress}
       style={[
         styles.container,
-        {backgroundColor: isSelected ? '#FFF' : '#f7f7f7'},
+        {backgroundColor: isSelected ? '#fbc531' : '#f7f7f7'},
       ]}>
       {/* images */}
       <Image style={styles.image} source={getImage()} />
@@ -34,7 +35,7 @@ const UberTypeRow = (props) => {
 
       <View style={styles.rightContainer}>
         {/* <Ionicons name={'pricetag'} size={18} color={'#42d742'} /> */}
-        <Text style={styles.price}>Rp.{type.price}</Text>
+        <Text style={styles.price}>Rp.{numberWithCommas(type.price)}</Text>
       </View>
     </Pressable>
   );
@@ -47,10 +48,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
+    marginTop: 30,
   },
   image: {
-    height: 70,
-    width: 80,
+    height: 60,
+    width: 70,
     resizeMode: 'contain',
   },
   middleContainer: {
@@ -68,14 +70,14 @@ const styles = StyleSheet.create({
     color: '#5d5d5d',
   },
   rightContainer: {
-    width: 100,
+    width: responsiveWidth(120),
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   price: {
     fontWeight: 'bold',
     fontSize: 16,
-    marginLeft: 5,
+    marginLeft: 2,
     color: '#000',
   },
 });

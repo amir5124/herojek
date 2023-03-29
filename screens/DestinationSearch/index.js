@@ -35,7 +35,7 @@ const DestinationSearch = () => {
             <View keyboardShouldPersistTaps="handled" style={styles.container}>
                 
                 <GooglePlacesAutocomplete
-                    placeholder='Dari mana?'
+                    placeholder='Lokasi Sekarang'
                     onPress={(data, details = null) => {
                         setOriginPlace({ data, details })
                     }}
@@ -61,7 +61,7 @@ const DestinationSearch = () => {
                 />
 
                 <GooglePlacesAutocomplete
-                    placeholder='Mau kemana?'
+                    placeholder='Alamat Rumah'
                     onPress={(data, details = null) => {
                         setDestinationPlace({ data, details })
                     }}

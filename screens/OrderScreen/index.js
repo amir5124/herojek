@@ -5,6 +5,7 @@ import { useRoute } from '@react-navigation/native';
 import { API, graphqlOperation } from 'aws-amplify';
 import { getOrder, getCar } from '../../src/graphql/queries';
 import { onOrderUpdated, onCarUpdated } from './subscriptions';
+import OrderPopup from "../../components/OrderPopup";
 
 const OrderScreen = (props) => {
   const [car, setCar] = useState(null);
@@ -81,9 +82,9 @@ const OrderScreen = (props) => {
       <View style={{height: Dimensions.get('window').height - 400}}>
         <OrderMap car={car} />
       </View>
-      <View>
-        <Text>Order status: {order?.status}</Text>
-      </View>
+      {/* <View>
+        <OrderPopup />
+      </View> */}
     </View>
   );
 };

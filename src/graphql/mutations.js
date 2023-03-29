@@ -10,6 +10,7 @@ export const createUser = /* GraphQL */ `
       id
       username
       email
+      phoneNumber
       orders {
         items {
           id
@@ -41,6 +42,7 @@ export const createUser = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -61,6 +63,7 @@ export const updateUser = /* GraphQL */ `
       id
       username
       email
+      phoneNumber
       orders {
         items {
           id
@@ -92,6 +95,7 @@ export const updateUser = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -112,6 +116,7 @@ export const deleteUser = /* GraphQL */ `
       id
       username
       email
+      phoneNumber
       orders {
         items {
           id
@@ -143,6 +148,7 @@ export const deleteUser = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -187,6 +193,7 @@ export const createCar = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -242,6 +249,7 @@ export const updateCar = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -297,6 +305,7 @@ export const deleteCar = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -338,6 +347,7 @@ export const createOrder = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -371,6 +381,7 @@ export const createOrder = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -400,6 +411,7 @@ export const updateOrder = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -433,6 +445,7 @@ export const updateOrder = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }
@@ -462,6 +475,7 @@ export const deleteOrder = /* GraphQL */ `
         id
         username
         email
+        phoneNumber
         orders {
           nextToken
         }
@@ -495,6 +509,7 @@ export const deleteOrder = /* GraphQL */ `
           id
           username
           email
+          phoneNumber
           createdAt
           updatedAt
         }

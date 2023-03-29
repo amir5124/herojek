@@ -53,23 +53,23 @@ const RouteMap = ({origin, destination}) => {
   }, []);
 
   const getImage = type => {
-    if (type === 'LinkRide') {
-      return require('../../assets/images/top-UberX.png');
+    if (type === 'Perawat') {
+      return require('../../assets/images/mingguan.png');
     }
-    if (type === 'LinkX') {
-      return require('../../assets/images/top-Comfort.png');
+    if (type === 'Caregiver') {
+      return require('../../assets/images/bulanan.png');
     }
-    return require('../../assets/images/top-UberXL.png');
+    return require('../../assets/images/caregiver.png');
   };
 
   useEffect(() => {
     if (!originLoc || !destinationLoc) return;
     mapRef.current.fitToCoordinates([originLoc, destinationLoc], {
       edgePadding: {
-        top: 50,
-        right: 50,
-        bottom: 50,
-        left: 50,
+        top: 100,
+        right: 100,
+        bottom: 100,
+        left: 100,
       },
     });
   }, [originLoc, destinationLoc]);
@@ -105,25 +105,7 @@ const RouteMap = ({origin, destination}) => {
           latitudeDelta: 0.0222,
           longitudeDelta: 0.0421,
         }}>
-        {cars.map(car => (
-          <Marker
-            key={car.id}
-            coordinate={{latitude: car.latitude, longitude: car.longitude}}>
-            <Image
-              style={{
-                width: 40,
-                height: 40,
-                resizeMode: 'contain',
-                transform: [
-                  {
-                    rotate: `${car.heading}deg`,
-                  },
-                ],
-              }}
-              source={getImage(car.type)}
-            />
-          </Marker>
-        ))}
+       
         <MapViewDirections
           origin={originLoc}
           destination={destinationLoc}
@@ -149,7 +131,7 @@ const RouteMap = ({origin, destination}) => {
           />
         </Marker>
       </MapView>
-      <Pressable
+      {/* <Pressable
         onPress={() => console.warn('hey')}
         style={styles.balanceButton}>
         <Text style={styles.balanceText}>
@@ -157,7 +139,7 @@ const RouteMap = ({origin, destination}) => {
             {estDistance.toFixed(1)} km
           </Text>
         </Text>
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };
